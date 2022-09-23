@@ -1,0 +1,17 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: currency-exchange
+
+  config:
+    activate:
+      on-profile:
+
+    import: optional:configserver:http://localhost:8888
+
+  cloud:
+    config:
+      profile: dev
+
