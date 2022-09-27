@@ -27,6 +27,6 @@ public class CurrencyExchangeController {
     @GetMapping("/from/{from}/to/{to}")
     public ResponseEntity<?> currencyExchange(@PathVariable(value = "from") String from,
                                               @PathVariable(value = "to") String to){
-        return currencyExchangeService.currencyExchange();
+        return currencyExchangeService.currencyExchange(from, to);
     }
 }
