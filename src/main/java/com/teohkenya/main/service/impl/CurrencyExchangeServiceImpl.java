@@ -1,6 +1,7 @@
 package com.teohkenya.main.service.impl;
 
 import com.teohkenya.main.model.CurrencyExchange;
+import com.teohkenya.main.repositories.CurrencyExchangeRepo;
 import com.teohkenya.main.service.CurrencyExchangeService;
 import com.teohkenya.main.utils.CodeRepo;
 import lombok.extern.slf4j.Slf4j;
@@ -20,11 +21,13 @@ public class CurrencyExchangeServiceImpl implements CurrencyExchangeService {
 
     private final CodeRepo codeRepo;
     private final Environment environment;
+    private final CurrencyExchangeRepo exchangeRepo;
 
     @Autowired
-    public CurrencyExchangeServiceImpl(CodeRepo codeRepo, Environment environment) {
+    public CurrencyExchangeServiceImpl(CodeRepo codeRepo, Environment environment, CurrencyExchangeRepo exchangeRepo) {
         this.codeRepo = codeRepo;
         this.environment = environment;
+        this.exchangeRepo = exchangeRepo;
     }
 
 
