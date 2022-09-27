@@ -1,7 +1,6 @@
 package com.teohkenya.main.service.impl;
 
 import com.teohkenya.main.configs.CustomProperties;
-import com.teohkenya.main.enums.ResponseEnums;
 import com.teohkenya.main.model.CurrencyExchange;
 import com.teohkenya.main.model.Error;
 import com.teohkenya.main.model.ErrorDetails;
@@ -56,9 +55,9 @@ public class CurrencyExchangeServiceImpl implements CurrencyExchangeService {
                 // This is in case a record is not found
                 Error error = new Error();
 
-                error.setStatusCode(ResponseEnums.RECORD_NOT_FOUND.getStatusCode());
-                error.setStatusDescription(ResponseEnums.RECORD_NOT_FOUND.getStatusDescription());
-                error.setStatusMessage(ResponseEnums.RECORD_NOT_FOUND.getStatusMessage());
+                error.setStatusCode("1");
+                error.setStatusDescription("Failure");
+                error.setStatusMessage("Unable to find record from " + from + " to " + to);
 
                 ErrorDetails errorDetails = new ErrorDetails(error);
 
