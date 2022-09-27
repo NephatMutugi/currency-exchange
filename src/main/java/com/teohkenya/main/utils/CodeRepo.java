@@ -18,9 +18,9 @@ public class CodeRepo {
         CurrencyExchange currencyExchange = new CurrencyExchange();
 
         currencyExchange.setId(1001L);
-        currencyExchange.setTo("USD");
+        currencyExchange.setTo("RWF");
         currencyExchange.setFrom("KES");
-        currencyExchange.setConversionMultiple(BigDecimal.valueOf(120.00));
+        currencyExchange.setConversionMultiple(BigDecimal.valueOf(8.60));
         currencyExchange.setEnvironment(port);
 
         return new ResponseEntity<>(currencyExchange, HttpStatus.OK);
