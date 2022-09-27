@@ -1,5 +1,6 @@
 package com.teohkenya.main.service;
 
+import com.teohkenya.main.model.CurrencyExchange;
 import org.springframework.http.ResponseEntity;
 
 /**
@@ -7,5 +8,5 @@ import org.springframework.http.ResponseEntity;
  **/
 public interface CurrencyExchangeService {
 
-    ResponseEntity<?> currencyExchange();
+    ResponseEntity<CurrencyExchange> currencyExchange();
 }

@@ -1,6 +1,11 @@
 package com.teohkenya.main.utils;
 
+import com.teohkenya.main.model.CurrencyExchange;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+
+import java.math.BigDecimal;
 
 /**
  * @ Author NMuchiri
@@ -8,18 +13,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class CodeRepo {
 
-//    URL
-//    http://localhost:8000/currency-exchange/from/USD/to/INR
+    public ResponseEntity<CurrencyExchange> mockCurrencyExchange(String port){
 
+        CurrencyExchange currencyExchange = new CurrencyExchange();
 
-    /*
-    * Response Structure
-    {
-        "id":10001,
-            "from":"USD",
-            "to":"INR",
-            "conversionMultiple":65.00,
-            "environment":"8000 instance-id"
+        currencyExchange.setId(1001L);
+        currencyExchange.setTo("USD");
+        currencyExchange.setFrom("KES");
+        currencyExchange.setConversionMultiple(BigDecimal.valueOf(120.00));
+        currencyExchange.setEnvironment(port);
+
+        return new ResponseEntity<>(currencyExchange, HttpStatus.OK);
     }
-    * */
 }
