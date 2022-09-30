@@ -29,6 +29,12 @@ spring:
         format_sql: false
     show-sql: true
 
+
 currency:
   mock: false
+
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka
 
