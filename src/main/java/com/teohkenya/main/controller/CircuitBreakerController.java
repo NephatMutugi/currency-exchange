@@ -1,7 +1,9 @@
 package com.teohkenya.main.controller;
 
+import com.teohkenya.main.model.Error;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,13 +19,23 @@ public class CircuitBreakerController {
 
 
 
-    @Retry(name = "default")
+    @Retry(name = "sample-api", fallbackMethod = "mockResponse")
     @GetMapping("sample-api")
-    public String sampleApi(){
+    public ResponseEntity<?> sampleApi(){
         log.info("SAMPLE API CALL RECEIVED");
         ResponseEntity<String> responseEntity = new RestTemplate().getForEntity("http://localhost:8080/some-dummy-url",
                 String.class);
 
-        return responseEntity.getBody();
+        return new ResponseEntity<>(responseEntity.getBody(), HttpStatus.NOT_FOUND);
+    }
+
+    public ResponseEntity<?> mockResponse(Exception ex){
+
+        Error error = new Error();
+
+        error.setStatusCode("500");
+        error.setStatusDescription("Failure");
+        error.setStatusMessage("Maximum retries exceeded");
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 }
