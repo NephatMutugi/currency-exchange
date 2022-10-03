@@ -19,7 +19,7 @@ public class CircuitBreakerController {
 
 
 
-    @Retry(name = "sample-api", fallbackMethod = "mockResponse")
+    @Retry(name = "sample-api", fallbackMethod = "errorResponse")
     @GetMapping("sample-api")
     public ResponseEntity<?> sampleApi(){
         log.info("SAMPLE API CALL RECEIVED");
@@ -29,13 +29,14 @@ public class CircuitBreakerController {
         return new ResponseEntity<>(responseEntity.getBody(), HttpStatus.NOT_FOUND);
     }
 
-    public ResponseEntity<?> mockResponse(Exception ex){
+    public ResponseEntity<?> errorResponse(Exception ex){
 
         Error error = new Error();
 
         error.setStatusCode("500");
         error.setStatusDescription("Failure");
-        error.setStatusMessage("Maximum retries exceeded");
+//        error.setStatusMessage("Maximum retries exceeded");
+        error.setStatusMessage(ex.getMessage());
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 }
